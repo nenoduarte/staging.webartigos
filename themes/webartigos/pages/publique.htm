@@ -1,0 +1,33 @@
+url = "/publique/:article_id?"
+layout = "auth"
+title = "publique"
+is_hidden = 0
+meta_title = "Publique seu artigo no WebArtigos.com - Monografias, textos, trabalhos"
+
+[blogCreateArticle]
+article_id = "{{ :article_id }}"
+==
+<?php
+function onStart() {
+    $this['showAbout'] = false;
+}
+?>
+==
+{% put styles %}
+<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
+{% endput %}
+
+<header class="pb-2 my-4 border-bottom border-1 border-white">
+    {% if not blogCreateArticle.article %}
+
+    <h2>Envio de artigo para análise</h2>
+    <p class="page-title"><strong>Para garantir que receberemos seu artigo corretamente, inclua todo o conteúdo dele no editor abaixo e, se possível, também envie o arquivo DOC ou PDF clicando em <i>Escolher arquivo</i>.</strong>
+    </p>
+    
+    {% else %}
+    <p class="page-title">Utilize o formulário abaixo para alterar seu artigo, ele irá para revisão antes de ser republicado.
+    </p>
+    {% endif %}
+</header>
+
+{% component 'blogCreateArticle' %}

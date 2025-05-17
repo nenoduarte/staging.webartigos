@@ -1,0 +1,211 @@
+url = "/"
+layout = "home"
+title = "Home"
+
+[blogListArticles]
+articlesPerPage = 40
+==
+<div class="d-flex flex-column px-3">
+    <header class="pb-2 my-4 border-bottom border-1 border-white">
+        <h1 class="page-title">Dê visibilidade às suas ideias, publique agora</h1>
+    </header>
+    <h2>Compartilhe seu conhecimento com quem precisa dele</h2>
+    <blockquote class="py-2 px-4 border-start border-4 border-white font-size-3">
+        <p>"Transforme seu conhecimento em oportunidades. Publique, aprenda e cresça conosco!"</p>
+    </blockquote>
+
+
+
+    {% if not user %}
+        <button
+            data-bs-toggle="modal"
+            data-bs-target="#signupModal"
+            class="btn btn-cadastre mb-2 me-auto">ENVIAR ARTIGO AGORA</button>
+    {% endif %}
+
+            
+            
+            <p class="featured-text"><strong>Desde 2006, mais de 100.000 autores já encontraram no Webartigos.com o espaço ideal para compartilhar suas ideias com milhões de leitores.</strong></p>
+            
+            <p>Você é estudante e acabou de concluir um trabalho que deu um trabalhão? Professor com materiais valiosos guardados na gaveta? Profissional com insights que poderiam ajudar outros da sua área?</p>
+            
+            <p class="cta-text"><strong>Não deixe seu conhecimento guardado. Publique e impacte vidas.</strong></p>
+
+                {% if not user %}
+        <button
+            data-bs-toggle="modal"
+            data-bs-target="#signupModal"
+            class="btn btn-cadastre mb-2 me-auto">CRIAR MINHA CONTA AGORA</button>
+    {% endif %}
+            
+
+        </section>
+
+            
+            <div class="benefit-card">
+                
+                <h3><span class="icon">🚀</span>Processo simples</h3>
+                <ol>
+                    <li>Crie sua conta gratuita (leva menos de 2 minutos)</li>
+                    <li>Envie seu arquivo PDF ou Word (trabalhos, resumos, estudos, teses...)</li>
+                    <li>Aprovação rápida (muitas vezes em menos de 24h)</li>
+                </ol>
+            </div>
+            
+            <div class="benefit-card">
+                
+                <h3><span class="icon">🏆</span>Reconhecimento acadêmico</h3>
+                <ul>
+                    <li>Certificado digital de publicação com 10 horas complementares</li>
+                    <li>Perfeito para currículos, processos seletivos e atividades extracurriculares</li>
+                    <li>URL permanente para compartilhar em redes profissionais</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="testimonial-section">
+            <h2>O Webartigos valoriza seu esforço</h2>
+            
+            <blockquote>
+                <p><em>"Publiquei meu TCC e consegui o certificado de 10h no mesmo dia. Usei para completar minhas horas complementares e ainda recebo reconhecimento de outros estudantes que encontraram minha pesquisa e usaram como referência."</em></p>
+                <cite><strong>— Mariana Costa, Estudante de Administração</strong></cite>
+            </blockquote>
+        </section>
+                {% if not user %}
+        <button
+            data-bs-toggle="modal"
+            data-bs-target="#signupModal"
+            class="btn btn-cadastre mb-2 me-auto">PUBLICAR MEU ARTIGO</button>
+    {% endif %}
+        <section class="content-types-section">
+            <h3>O que você pode publicar?</h3>
+            <div class="content-types-grid">
+                <div class="content-type">
+                    <h4>Trabalhos acadêmicos</h4>
+                    <p>TCC, monografias, papers</p>
+                </div>
+                <div class="content-type">
+                    <h4>Estudos e pesquisas</h4>
+                    <p>Em qualquer área do conhecimento</p>
+                </div>
+                <div class="content-type">
+                    <h4>Resumos e resenhas</h4>
+                    <p>De livros e obras</p>
+                </div>
+                <div class="content-type">
+                    <h4>Artigos de opinião</h4>
+                    <p>Sobre temas atuais</p>
+                </div>
+                <div class="content-type">
+                    <h4>Materiais didáticos</h4>
+                    <p>Para compartilhar com alunos</p>
+                </div>
+                <div class="content-type">
+                    <h4>Conteúdos interativos</h4>
+                    <p>Como infográficos e apresentações</p>
+                </div>
+                <div class="content-type">
+                    <h4>Anotações de aula</h4>
+                    <p>Que podem ajudar outros estudantes</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="certificate-section">
+            <h2>Seu conhecimento merece reconhecimento</h2>
+            
+            <p>Por apenas R$49, transforme sua publicação em um certificado oficial de 10 horas complementares. Ideal para:</p>
+            
+            <div class="certificate-benefits">
+                <p>✅ Comprovar atividades extracurriculares<br>
+                ✅ Enriquecer seu currículo acadêmico<br>
+                ✅ Documentar sua produção intelectual<br>
+                ✅ Cumprir requisitos de carga horária complementar</p>
+            </div>
+            
+            
+        </section>
+
+        <section class="community-section">
+            <h2>Entre para nossa comunidade de conhecimento</h2>
+            
+            <p class="stats-highlight"><strong>108.000+ publicações. 81.000+ autores. Milhões de leitores.</strong></p>
+            
+            <p>Não deixe suas ideias guardadas na gaveta ou esquecidas em um arquivo. Compartilhe seu conhecimento, ajude outros estudantes e profissionais, e tenha seu trabalho reconhecido.</p>
+            
+                {% if not user %}
+        <button
+            data-bs-toggle="modal"
+            data-bs-target="#signupModal"
+            class="btn btn-cadastre mb-2 me-auto">CRIAR MINHA CONTA AGORA</button>
+    {% endif %}
+        </section>
+
+    <div class="card bg-light mb-4">
+        <div class="card-body">
+            <h4 class="title-section">Encontre conteúdo por área</h4>
+            {% for category in blogListArticles.categories %}
+                <div class="content-categ float-start mx-1 mb-1">
+                    <button
+                        class="radius border-0 content-category w-100 lh-2"
+                        data-request="blogListArticles::onSelectedCategory"
+                        data-request-update="'blog/listArticles': '#articles'"
+                        data-id="{{ category.id }}"
+                        >
+                        {{ category.name }}
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="d-flex flex-column">
+        <div class="">
+            <div class="card bg-white mb-4">
+                <div class="content-title pt-2 ps-3">
+                    <h3 class="card-title">Últimos artigos publicados</h3>
+                </div>
+
+                <div class="card-body">
+                    {% partial 'blog/listArticles' %}
+                </div>
+            </div>
+            
+            <!-- <div class="card bg-white mb-4">
+                <div class="content-title pt-2 ps-3">
+                    <h3 class="card-title">Autores mais ativos</h3>
+                </div>
+                <div class="card-body">
+                    {% partial 'blog/listUsers' %}
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+
+
+<hr />
+<p>Este portal tem o apoio de: <a href="https://1winsbet-br.com/">1WIN BRASIL</a></p>
+</div>
+
+<script>
+    const boxes = document.querySelectorAll('.content-category')
+    boxes.forEach(box => {
+        box.addEventListener('click', function(event) {
+            if( this.classList.contains('category-selected') ) {
+                this.classList.remove('category-selected');
+            }
+            else {
+                this.classList.add('category-selected');
+            }    
+
+            var data = [];
+            var selected = document.querySelectorAll('.category-selected');
+            selected.forEach(function(item) {
+                data.push(item.getAttribute('data-id'));
+            });
+
+            this.setAttribute("data-request-data", "{ categories:'" + data.join(',') + "'}");
+        });
+    });
+</script>

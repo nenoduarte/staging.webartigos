@@ -1,0 +1,74 @@
+url = "/edicoes"
+layout = "home"
+title = "Edições"
+meta_title = "Edições do WebArtigos"
+==
+<?php
+use Carbon\Carbon;
+
+function onStart() {
+    $years = [];
+    $this['monthNames'] = ["", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    
+    for ($i = Carbon::now()->year - 1; $i >= 2007; $i--) {
+        $years[] = $i;
+    }
+
+    $this['currentYear'] = Carbon::now()->year;
+    $this['thisMonth'] = Carbon::now()->month;
+
+    $this['years'] = $years;
+}
+?>
+==
+<header class="pb-2 my-4 border-bottom border-1 border-white">
+    <h1 class="page-title">Edições mensais do WebArtigos</h1>
+</header>
+
+<div class="card bg-light">
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="content-date-home ps-4 pb-1 my-2">
+                <i class="bi bi-calendar-date"></i>
+                <a href="{{ 'publicacoes'|page({year: currentYear, month: 0}) }}">{{ currentYear }}</a>
+            </div>
+            {% for month in 1..thisMonth %}
+                <div class="content-categ float-start mx-1 mb-1">
+                    <button class="radius border-0 content-category w-100 lh-2">
+                        <a href="{{ 'publicacoes'|page({year: currentYear, month: month}) }}">{{ monthNames[month] }}</a>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% for year in years %}
+            <div class="row mb-4">
+                <div class="content-date-home ps-4 pb-1 my-2">
+                    <i class="bi bi-calendar-date"></i>
+                    <a href="{{ 'publicacoes'|page({year: year, month: 0}) }}">{{ year }}</a>
+                </div>
+                {% for month in 1..12 %}
+                    <div class="content-categ float-start mx-1 mb-1">
+                        <button class="radius border-0 content-category w-100 lh-2">
+                            <a href="{{ 'publicacoes'|page({year: year, month: month}) }}">{{ monthNames[month] }}</a>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="row mb-4">
+            <div class="content-date-home ps-4 pb-1 my-2">
+                <i class="bi bi-calendar-date"></i>
+                <a href="{{ 'publicacoes'|page({year: 2006, month: 0}) }}">{{ 2006 }}</a>
+            </div>
+            {% for month in 6..12 %}
+                <div class="content-categ float-start mx-1 mb-1">
+                    <button class="radius border-0 content-category w-100 lh-2">
+                        <a href="{{ 'publicacoes'|page({year: 2006, month: month}) }}">{{ monthNames[month] }}</a>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

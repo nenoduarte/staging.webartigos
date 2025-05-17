@@ -1,0 +1,45 @@
+[PterSnow\FrontendUser\Components\Account account]
+==
+<div class="modal" id="forgotPasswordModal">
+    <div class="modal-dialog modal-dialog-centered" id="forgotPasswordModalContent">
+        <div class="modal-content">
+            <div class="modal-header bg-header">
+                <h5 class="modal-title">
+                     Informe o seu email e mandaremos um link para trocar a senha.
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body bg-body">
+                <form
+                    id="forgot-form"
+                    data-request="account::onRecoverPassword"
+                    data-request-validate
+                    >
+                    {{ form_token() }}
+                
+                    <div class="form-floating mb-3">
+                        <input
+                            name="email"
+                            type="email"
+                            class="form-control"
+                            id="forgotEmail"
+                            placeholder="E-mail"
+                            required />
+                        <label for="forgotEmail">E-mail</label>
+                        <p data-validate-for="email"  class="text-danger"></p> 
+                    </div>
+
+                    <button
+                        type="submit"
+                        data-attach-loading
+                        class="btn btn-blue mb-3">Recuperar minha conta e enviar artigos</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-dialog modal-dialog-centered modal-loading">
+        <div class="spinner-border text-light mx-auto"></div>
+    </div>
+</div>

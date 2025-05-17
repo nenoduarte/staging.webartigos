@@ -1,0 +1,137 @@
+[PterSnow\FrontendUser\Components\Account account]
+==
+<div class="modal" id="signupModal">
+    <div class="modal-dialog modal-dialog-centered" id="signupModalContent">
+        <div class="modal-content">
+            <div class="modal-header bg-header">
+                <h5 class="modal-title">
+                    Crie seu perfil de escritor para publicar artigos
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body bg-body">
+                <p>Preencha corretamente os campos para criar seu perfil. Use um usuário e senha fácil de lembrar, como o seu e-mail. O envio do artigo será feito na próxima página.</p>
+
+                <form
+                    id="register-form"
+                    data-request="account::onSignUp"
+                    data-request-flash
+                    method="POST">
+                    {{ form_token() }}
+                    <div class="form-floating mb-3">
+                        <input
+                            name="name"
+                            type="text"
+                            class="form-control"
+                            id="registerName"
+                            placeholder="Nome completo"
+                            required />
+                        <label for="registerName">Nome completo</label>
+                    </div>
+                
+                    <div class="form-floating mb-3">
+                        <input
+                            name="email"
+                            type="email"
+                            class="form-control"
+                            id="registerEmail"
+                            placeholder="E-mail"
+                            required />
+                        <label for="registerEmail">E-mail</label>
+                        <p data-validate-for="email"  class="text-danger"></p> 
+                    </div>
+                
+                    <div class="form-floating mb-3">
+                        <input
+                            name="confirmationEmail"
+                            type="email"
+                            class="form-control"
+                            id="confirmationEmail"
+                            placeholder="Repetir e-mail"
+                            required />
+                        <label for="confirmationEmail">Repetir e-mail</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input
+                            name="password"
+                            type="password"
+                            class="form-control"
+                            id="registerPassword"
+                            placeholder="Senha"
+                            required />
+                        <label for="registerPassword">Senha</label>
+                        <p data-validate-for="password"  class="text-danger"></p> 
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="accountUsername" class="form-label">Seu endereço de autor</label>
+                        <div class="input-group">
+                            <span class="input-group-text">webartigos.com/autores/</span>
+                            <input 
+                                name="username"
+                                type="text"
+                                class="form-control"
+                                id="accountUsername"
+                                placeholder="Usuário"
+                                value="{{ form_value('username') }}"
+                                required />
+                        </div>
+                        <p id="accountError" class="text-danger"></p> 
+                    </div>
+    
+		<div class="g-recaptcha mb-3" 
+		     data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"></div>
+
+                    <button
+                        type="submit"
+                        data-attach-loading
+                 
+                        class="g-recaptcha btn btn-blue mb-3">
+                        Criar minha conta e enviar artigo <i class="bi bi-file-earmark-arrow-up-fill"></i>
+                    </button>
+
+                    <div class="modal-footer">
+                        Já tem uma conta? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Acesse aqui</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-dialog modal-dialog-centered modal-loading">
+        <div class="spinner-border text-light mx-auto"></div>
+    </div>
+</div>
+
+<script>
+/*    function onSubmit(token) {
+        document.getElementById("register-form").submit();
+    }
+*/
+    document.querySelector("#accountUsername").addEventListener("input", function() {
+        var username = this.value;
+        var error = document.getElementById("accountError");
+        if (username.length < 3) {
+            error.innerHTML = "O usuário deve ter no mínimo 3 caracteres.";
+            error.style.display = "block";
+        } else {
+            error.style.display = "none";
+        }
+    });
+
+    document.querySelector("#accountUsername").addEventListener("blur", function() {
+        var username = this.value;
+        var error = document.getElementById("accountError");
+
+        fetch("/autores/" + username)
+            .then(response => {
+                if (response.status === 200) {
+                    error.innerHTML = "Este usuário já está em uso.";
+                    error.style.display = "block";
+                } else {
+                    error.style.display = "none";
+                }
+            });
+    });
+</script>

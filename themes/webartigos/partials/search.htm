@@ -1,0 +1,27 @@
+==
+<script type="text/javascript" src="https://www.google.com/cse/brand?form=cse-search-box&lang=pt"></script>
+
+{# <script type="text/javascript">
+    google.load('search', '1');
+    google.setOnLoadCallback(function() {
+    google.search.CustomSearchControl.attachAutoCompletion(
+        '007294207997768620003:jjnwfielnua',
+        document.getElementById('q'),
+        'cse-search-box');
+    });
+</script> #}
+
+
+<form role="form" id="cse-search-box" action="{{ 'busca'|page }}">
+    <div class="d-flex">
+        <input type="hidden" name="cx" value="007294207997768620003:jjnwfielnua" />
+        <input type="hidden" name="cof" value="FORID:11" />
+        <input type="hidden" name="ie" value="ISO-8859-1" />
+        <input type="hidden" name="num" value="100" />
+
+        <div class="input-group">
+            <button class="btn bg-light"><i class="bi bi-search"></i></button>
+            <input type="text" name="q" id="q" class="form-control" placeholder="Buscar">
+        </div>
+    </div>
+</form>

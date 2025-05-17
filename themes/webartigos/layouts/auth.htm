@@ -1,0 +1,42 @@
+[session]
+security = "user"
+redirect = "cadastro"
+
+[PterSnow\FrontendUser\Components\Account account]
+paramCode = "code"
+forceSecure = 0
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        {% partial 'head/head-meta' %}
+        <title>{{ this.page.meta_title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        {% partial 'head/head-links' %}
+        {% partial 'head/head-scripts' %}
+        {% partial 'head/analytics-code' %}
+    </head>
+    <body class="bg-body">
+
+        <!-- Header -->
+        {% partial 'header' %}
+
+        {% partial 'flash-messages' %}
+
+        {% component 'session' %}
+        <main class="d-flex px-3">
+            <article class="w-100">
+                {% page %}
+            </article>
+            <!-- /Article -->
+        </main>
+
+        <!-- Footer -->
+        {% partial 'footer' %}
+
+        <!-- Mobile -->
+        {% partial 'nav-mobile' %}
+
+    </body>
+</html>

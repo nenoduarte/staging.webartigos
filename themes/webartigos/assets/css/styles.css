@@ -1,0 +1,270 @@
+h1 {
+    color: #2b4c82; /* Darker blue for better contrast */
+    font-size: 2.5rem; /* Reduced for better proportion */
+    line-height: 0.8; /* Improved line height relative to font size */
+    font-weight: 700; /* Using numerical value for consistency */
+    text-transform:initial; /* Maintaining readability */
+}
+h2 {
+    color: #333; /* Softer than pure black */
+    font-size: 1.75rem; /* Better hierarchy */
+    font-weight: 700;
+    margin-top: 1.5rem; /* Added spacing */
+    line-height: 1.3; /* Improved readability */
+}
+h3 {
+    color: #404040; /* Distinct from h2 */
+    font-size: 1.4rem; /* Clear hierarchy from h2 */
+    font-weight: 600; /* Slightly lighter than h2 */
+    margin-top: 1.25rem; /* Added spacing */
+    line-height: 1.4;
+}
+p {
+    margin-bottom: 1.5rem; /* Increased spacing */
+    margin-top: 0; /* Remove top margin for better flow */
+    font-size: 1.4rem; /* More readable size (18px) */
+    line-height: 1.6; /* Improved readability */
+    letter-spacing: normal; /* Better for long-form reading */
+    color: #444; /* Easier on eyes than pure black */
+    overflow-wrap: break-word; 
+}
+hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 0; /* Reset border */
+    border-bottom: 1px solid #e0e0e0; /* Lighter color */
+    opacity: 0.8; /* Subtle appearance */
+}
+form {
+    margin: 0;
+    padding: 0;
+}
+a:active, a:visited {
+    color: #2b4c82; /* Darker blue for better contrast */
+    font-weight: 600; /* Less heavy than bold */
+    text-decoration: underline; /* Better accessibility */
+    text-underline-offset: 0.15em; /* Modern look */
+    transition: color 0.2s ease; /* Smooth transition */
+}
+a:hover {
+    color: #1a365d; /* Darker on hover */
+    text-decoration: underline;
+}
+/************************************************************************************/
+.font-size-1 {
+    font-size: 0.875rem; /* 14px - corrected from 12px */
+}
+.font-size-2 {
+    font-size: 1rem; /* 16px */
+}
+.font-size-3 {
+    font-size: 1.125rem; /* 18px */
+}
+.btn-cadastre {
+    background: #e69b00; /* Darker for better contrast */
+    color: #000 !important; /* Black text for better contrast with yellow */
+    font-size: 1.125rem; /* More reasonable button text size */
+    font-weight: 600;
+    padding: 0.75rem 1.5rem; /* Better padding */
+    border-radius: 4px; /* Rounded corners */
+    transition: all 0.2s ease; /* Smooth transition */
+}
+.btn-cadastre:hover {
+    background: #d49000;
+    color: #000 !important;
+    transform: translateY(-1px); /* Subtle lift effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow on hover */
+}
+.btn-blue {
+    color: #fff !important;
+    background: #345d9f; /* Use consistent blue */
+    padding: 0.75rem 1.5rem; /* Better padding */
+    border-radius: 4px; /* Rounded corners */
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+.btn-blue:hover {
+    color: #fff !important;
+    background: #284980; /* Darker on hover */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.border-bottom-1 {
+    border-bottom: 1px solid #e6e9ed; /* Lighter color */
+}
+.border-bottom-4 {
+    border-bottom: 4px solid #d0d6dd; /* Lighter color */
+}
+.border-left-1 {
+    border-left: 1px solid #e6e9ed; /* Lighter color */
+}
+.bg-light {
+    background: #f5f7fa; /* Lighter, more modern */
+}
+.text-yellow {
+    color: #e69b00; /* More accessible yellow */
+}
+.text-yellow-2 {
+    color: #b05f09; /* Better contrast */
+}
+.st0 {
+    color: #000; /* Black text on yellow for contrast */
+    background: #f1a300;
+}
+.st1 {
+    color: #000; /* Black text on green for contrast */
+    background: #67ab35;
+}
+.st2 {
+    color: #fff; /* White text works on this red */
+    background: #c63434;
+}
+.bg-body {
+    background: #f5f7fa; /* Simplified gradient */
+    background: linear-gradient(to bottom, #e5eef7 0,
+        #f0f5fa 50%, #ffffff 100%);
+}
+.bg-header {
+    color: #fff;
+    background: #345d9f; /* Consistent blue */
+    background: linear-gradient(#3f6dac, #2b4c82); /* Less steep gradient */
+}
+.navbar-brand {
+    background-size: auto;
+    font-size: 1.5rem; /* More reasonable size */
+    text-transform: lowercase; /* Better readability */
+    text-decoration: none !important;
+    font-weight: 700;
+    letter-spacing: -0.01em; /* Tighter spacing for logo */
+    
+}
+.navbar-brand > span {
+    color: #fff; /* Better contrast in header */
+}
+.navbar-brand > .selected-effect {
+    color: #FFF;
+    background-color: #284980; /* Darker blue */
+    border-right: 0.15em solid #4a90e2; /* Brighter accent */
+    padding: 0.25em; /* Add some padding */
+    animation-name: blinking;
+    animation-duration: 1s;
+    animation-iteration-count: 100;
+}
+@keyframes blinking {
+  50% {
+    border-color: #ffcd5f;
+  }
+.navbar-nav > .nav-item > .nav-link {
+    color: #FFF !important;
+    line-height: 1.5 !important; /* More standard line height */
+    padding: 0.75rem 1rem; /* Better padding */
+    font-weight: 500; /* Medium weight */
+    transition: background-color 0.2s ease;
+}
+.navbar-nav > .nav-item:hover,
+.navbar-nav > .nav-item.active {
+    background: #84b0fb !important; /* Simpler, consistent hover */
+    background: linear-gradient(#e2e9f4, #a6c3f3);
+}
+.navbar-nav ul li {
+    color: #FFF;
+}
+.navbar-item ul li {
+    color: #FFF;
+}
+.title-section {
+    text-align: center;
+    color: #345d9f;
+    font-size: 1.5rem; /* More reasonable size */
+    font-weight: 600; /* Correct "semi-bold" to 600 */
+    background: #f0f4f8; /* Lighter background */
+    vertical-align: middle;
+    padding: 1rem 0; /* Add padding */
+    margin: 1.5rem 0; /* Add margin */
+    border-radius: 4px; /* Rounded corners */
+}
+.content-title {
+    color: #fff;
+    background: #345d9f; /* Consistent blue */
+    background: linear-gradient(#3f6dac, #2b4c82);
+    padding: 1rem; /* Add padding */
+    border-radius: 4px 4px 0 0; /* Rounded top corners */
+}
+.content-categ {
+    width: 133px;
+}
+.content-category {
+    background: #f5f7fa; /* Lighter background */
+    color: #345d9f;
+    cursor: pointer;
+    padding: 0.75rem; /* Add padding */
+    transition: background-color 0.2s ease;
+    border-radius: 4px; /* Rounded corners */
+}
+.content-category:hover {
+    background: #e6e9ed;
+}
+.category-selected {
+    background: #345d9f; /* Consistent blue */
+    color: #fff;
+    font-weight: 500; /* Add some weight */
+}
+.content-date-home {
+    color: #5a6270; /* Darker for better contrast */
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 2px solid #e6e9ed; /* Lighter border */
+    font-size: 0.75rem; /* Smaller size for dates */
+    letter-spacing: 0.05em; /* Spacing for uppercase text */
+}
+.footer {
+    background: #2b4c82; /* Darker blue */
+    color: #fff;
+    padding: 2rem 0; /* Add padding */
+}
+.footer p {
+    color: #fff;
+    font-size:1.1rem;
+    
+}
+.footer a {
+    color: #ffd87c; /* Brighter yellow for contrast on dark bg */
+    font-size: 1.275rem; /* 14px instead of 12px for readability */
+    text-decoration: underline; /* Better accessibility */
+    text-underline-offset: 0.15em;
+    transition: color 0.2s ease;
+}
+.footer a:hover {
+    color: #fff; /* White on hover for contrast */
+}
+.modal-dialog[data-ajax-updating],
+.modal-dialog:not([data-ajax-updating]) + .modal-loading {
+    display: none;
+}
+.ck-editor__editable {
+    min-height: 350px;
+    max-height: 350px;
+}
+/* For WebKit browsers */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+table { /* this somehow makes it work for td */
+    table-layout:fixed;
+    width:100%;
+  }

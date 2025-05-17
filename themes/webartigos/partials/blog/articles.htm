@@ -1,0 +1,49 @@
+==
+{% set lastDT = date(dtPublished) %}
+
+{% for article in articles %}
+    {% set dtPrint = date(article.published_at).diff(lastDT) %}
+    {% if dtPrint.days > 1 %}
+        {% set dtPublished = article.published_at %}
+        {% set lastDT = date(article.published_at) %}
+        <div class="content-date-home pb-2 mb-2">
+            <i class="bi bi-calendar-date"></i>
+            {{ carbon(dtPublished).format("d/F/Y") }}
+        </div>
+    {% endif %}
+
+    <div class="content-artigo">
+        <div class="row border-bottom-4 mb-5 pb-3 px-3">
+            <div class="col-md-8 me-4 px-3">
+                <div class="border-bottom-1 pb-2 mb-3 ms-1">
+                    Postado
+                    {{ carbon(article.published_at).diffForHumans() }}
+                    atrás em <strong class="fw-bold text-yellow-2">{{ article.category.name }}</strong>
+                </div>
+
+                <div class="link">
+                    <a href="{{ 'artigos'|page({slug: article.slug, id: article.id}) }}">{{ article.title }}</a>
+                </div>
+            </div>
+
+            <div class="col-md-3 border-left-1 px-3">
+                <div class="d-flex border-bottom-1 mb-1">
+                    <div class="bg-light py-2 me-2 mb-1">
+                        <a class="align-middle" href="{{ 'autores'|page({ username: article.user.username }) }}">
+                            <img class="img-fluid" src="{{ article.user.getAvatarThumb(50) }}" title="{{ article.user.name }}" alt="{{ article.user.name }}" width="50" height="50">
+                        </a>
+                    </div>
+                    <div class="bg-light py-3 px-2 w-100 mb-1">
+                        <a class="align-middle" href="{{ 'autores'|page({ username: article.user.username }) }}">
+                            {% set uName = article.user.name|split(' ') %}
+                            {% set uLength = uName|length %}
+                            {{ "%s %s"|format(uName[0], uName[uLength - 1]) }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pb-2 mb-1 font-size-1">Membro desde {{ article.user.created_at|date("d \\d\\e F \\d\\e Y") }}</div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

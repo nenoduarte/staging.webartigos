@@ -1,0 +1,19 @@
+url = "/autores/:username"
+layout = "default"
+title = "Autor"
+description = "Aqui você encontra informações sobre os autores de cada artigo publicado no Webartigos.com."
+is_hidden = 0
+meta_title = "Todos os escritores, estudantes e autores de artigos do Webartigos.com"
+meta_description = "Aqui você encontra informações sobre os autores de cada artigo publicado no Webartigos.com"
+
+[userArticles]
+pageNumber = "{{ :page }}"
+usersPerPage = 10
+articlesPerPage = 30
+articlePage = "artigos"
+userName = "{{ :username }}"
+userSex = "{{ :userSex }}"
+userState = "{{ :userState }}"
+userSort = "{{ :userSort }}"
+==
+{% component 'userArticles' %}

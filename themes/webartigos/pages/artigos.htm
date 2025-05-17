@@ -1,0 +1,11 @@
+url = "/artigos/:slug/:id"
+layout = "default"
+title = "Artigos"
+meta_title = "{{ blogArticle.article.title }}"
+
+[blogArticle]
+slug = "{{ :slug }}"
+id = "{{ :id }}"
+==
+
+{% component 'blogArticle' %}

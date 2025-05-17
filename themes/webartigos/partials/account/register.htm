@@ -1,0 +1,198 @@
+[PterSnow\FrontendUser\Components\Account account]
+redirect = "publique"
+paramCode = "code"
+forceSecure = 0
+
+[captcha]
+==
+<form
+    data-request="account::onRegister" data-request-data="redirect: '/publique'" id="register-form">
+    {{ form_token() }}
+    <div class="form-group">
+        <label for="registerName">Nome completo</label>
+        <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="registerName"
+            placeholder="Nome completo" />
+    </div>
+
+    <div class="form-group">
+        <label for="registerEmail">Email</label>
+        <input
+            name="email"
+            type="email"
+            class="form-control"
+            id="registerEmail"
+            placeholder="Email" />
+    </div>
+
+    <div class="form-group">
+        <label for="confirmationEmail">Repetir email</label>
+        <input
+            name="confirmationEmail"
+            type="email"
+            class="form-control"
+            id="confirmationEmail"
+            placeholder="Repetir email" />
+    </div>
+
+    <div class="form-group">
+        <label for="accountUsername">Seu Endereço</label>
+        <label id="accountUsername-error" for="accountUsername"></label>
+        <div class="input-group">
+            <span class="input-group-addon">webartigos.com/autores/</span>
+            <input name="accountUsername" type="text" class="form-control" id="accountUsername" value="{{ form_value('username') }}" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="registerPassword">Senha</label>
+        <input
+            name="password"
+            type="password"
+            class="form-control"
+            id="registerPassword"
+            placeholder="Senha" />
+    </div>
+
+    <div class="captcha">
+        {% component 'captcha' %}
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <input type="image" class="img-responsive center-block btn-image" src="{{ 'assets/images/bt-criarconta.gif'|theme }}" />
+        </div>
+    </div>
+</form>
+
+<style>
+    .captcha {
+        min-height: 78px;
+    }
+
+    .btn-image {
+        margin: 15px 0;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    .form-group label.error {
+        position: absolute;
+        right: 0;
+        top: -10px;
+        background-color: red;
+        color: white;
+        border-radius: 3px;
+        padding: 4px 8px;
+        font-size: 1.2rem;
+        background: #2fb9eb;
+	    border: 1px solid #ffffff;
+    }
+
+    .form-group label.error:after, .form-group label.error:before {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .form-group label.error:after {
+        border-color: rgba(47, 185, 235, 0);
+        border-top-color: #2fb9eb;
+        border-width: 5px;
+        margin-left: -5px;
+    }
+
+    .form-group label.error:before {
+        border-color: rgba(255, 255, 255, 0);
+        border-top-color: #ffffff;
+        border-width: 6px;
+        margin-left: -6px;
+    }
+</style>
+
+<script src="{{ 'assets/js/jquery.validate.min.js' |theme }}"></script>
+
+<script src="{{ 'assets/js/messages_pt_BR.js' |theme }}"></script>
+
+<script>
+    $(function() {
+        $('#registerEmail').on('blur', function() {
+            var value = $('#registerEmail').val();
+            if (value.length && value.indexOf('@') > -1) {
+                var value = value.split('@')[0].replace(/\.|-/g, '');
+                $.request('onChangeUserName', {
+                    data: {"accountUsername": value},
+                    success: function (data) {
+                        if (data.result == "True") {
+                            $('#accountUsername').val(value);
+                        }
+                        else {
+                            $('#accountUsername').val(data.result);
+                        }
+                    }
+                });
+            }
+        });
+
+
+        $('#register-form').validate({
+           rules: {
+                accountUsername: {
+                    required: true,
+                    onfocusout: function (element, event) {
+                        var value = element.value;
+                        $.request('onChangeUserName', {
+                            data: {"accountUsername": value},
+                            success: function (data) {
+                                $('#accountUsername').val(value);
+                                if (data.result != "True") {
+                                    $("#accountUsername-error").text('Este nome de usuário já está em uso, mas o usuário ' + data.result + ' está disponível.');
+                                    $("#accountUsername-error").addClass("error");
+                                }
+                                else {
+                                    $("#accountUsername-error").text('');
+                                    $("#accountUsername-error").removeClass("error");
+                                }
+                            }
+                        });
+                    },
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                registerName: {
+                    required: true
+                },
+                registerEmail: {
+                    required: true,
+                    email: true,
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                },
+                confirmationEmail: {
+                    required: true,
+                    email: true,
+                    equalTo: "#registerEmail"
+                },
+                password: {
+                    required: true,
+                    minlength: 8,
+                    normalizer: function (value) {
+                        return $.trim(value);
+                    }
+                }
+            }
+        });
+    });
+</script>

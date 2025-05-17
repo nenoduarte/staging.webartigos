@@ -1,0 +1,50 @@
+==
+<div id="box-ultimas" class="panel">
+    <div class="panel-heading title-right">
+        <h2 class="panel-title">Artigos enviados por último:</h2>
+    </div>
+
+    <div id="content-ultimas-home" class="panel-body">
+  {% for a in articlesByCategory %}
+      <div class="content-artigo">
+          <div class="content-ultimas-home row">
+              <div class="col-md-11">
+                  <div class="horario row">
+                          Postado há
+                          {% set difference = date().diff(date(a.published_at)) %}
+                          {% if difference.y < 1 %}
+                              {% if difference.m < 1 %}
+                                  {% if difference.d < 1 %}
+                                      {% if difference.h < 1 %}
+                                          {% if difference.i < 1 %}
+                                              {{ difference.s }} segundos
+                                          {% else %}
+                                              {{ difference.i }} minutos
+                                          {% endif %}
+                                      {% else %}
+                                          {{ difference.h }} horas
+                                      {% endif %}
+                                  {% else %}
+                                      {{ difference.d }} dias
+                                  {% endif %}
+                              {% else %}
+                                {{ difference.m }} meses
+                              {% endif %}
+                          {% else %}
+                              {{ difference.y }} anos
+                          {% endif %}
+                          atrás por <a href="{{ 'autores'|page({ username: a.user.username }) }}">
+                          {{ a.user.name }}
+                          </a>
+                      </div>
+
+                  <div class="link">
+                      <a href="{{ 'artigos'|page({slug: a.slug, id: a.id}) }}">{{ a.title }}</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  {% endfor %}
+
+  </div>
+</div>

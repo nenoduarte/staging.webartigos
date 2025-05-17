@@ -1,0 +1,10 @@
+==
+{% if not user.is_activated %}
+
+    <h3>O seu email não foi verificado.</h3>
+    <p>
+        Você deve fazer a verificação do seu email para que ele não seja deletado.
+        <a href="javascript:;" data-request="onSendActivationEmail">Enviar email de verificação</a>.
+    </p>
+
+{% endif %}

@@ -1,0 +1,42 @@
+description = "Default Layout"
+
+[session]
+security = "all"
+
+[PterSnow\FrontendUser\Components\Account account]
+redirect = "meus-artigos"
+paramCode = "code"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        {% partial 'head/head-meta' %}
+        <title>{{ this.page.meta_title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        {% partial 'head/head-links' %}
+        {% partial 'head/head-scripts' %}
+        {% partial 'head/analytics-code' %}
+    </head>
+    <body class="bg-body">
+
+        <!-- Header -->
+        {% partial 'header' %}
+
+        {% partial 'flash-messages' %}
+
+        <main class="d-flex px-3">
+            <!-- Content -->
+            <article class="w-100">
+                {% page %}
+            </article>
+        </main>
+
+        <!-- Footer -->
+        {% partial 'footer' %}
+
+        <!-- Mobile -->
+        {% partial 'nav-mobile' %}
+
+    </body>
+</html>

@@ -1,0 +1,55 @@
+url = "/publicacoes/:year/:month"
+layout = "default"
+title = "Publicações"
+meta_title = "Publicações do WebArtigos"
+==
+<?php
+use PterSnow\Blog\Models\Article;
+
+function onStart() {
+    $this['year'] = $this->param('year');
+    $this['month'] = $this->param('month');
+    $this['monthName'] = ["", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"][$this['month']];
+
+    $query = Article::isPublished()->whereYear('published_at', $this['year']);
+
+    if ($this['month'] != "0") {
+        $query->whereMonth('published_at', $this['month']);
+    }
+
+    $this['articles'] = $query->orderBy('published_at', 'asc')->get();
+}
+?>
+==
+<header class="pb-2 my-4 border-bottom border-1 border-white">
+    <h1 class="page-title">Todos os artigos publicados em {% if monthName %}{{ monthName }}/{% endif %}{{ year }} </h1>
+</header>
+
+<div class="card bg-light">
+    <div class="card-body">        
+        <div id="articles">
+            {% for article in articles %}
+                <div class="content-date-home pb-2 mb-2">
+                    <i class="bi bi-calendar-date"></i>
+                    {{ carbon(article.published_at).format("d/F/Y") }}
+                </div>
+        
+                <div class="content-artigo">
+                    <div class="row border-bottom-4 mb-5 pb-3 px-3">
+                        <div class="col-md-8 me-4 px-3">
+                            <div class="border-bottom-1 pb-2 mb-3 ms-1">
+                                Publicado
+                                {{ carbon(article.published_at).diffForHumans() }}
+                                atrás em <strong class="fw-bold ">{{ article.category.name }}</strong>
+                            </div>
+
+                            <div class="link">
+                                <a href="{{ 'artigos'|page({slug: article.slug, id: article.id}) }}">{{ article.title }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
